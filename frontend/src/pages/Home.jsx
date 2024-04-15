@@ -35,6 +35,7 @@ const Home = () => {
             if (data.isCorrect) {
                 setScore(score + 1);
             } else {
+                alert(`Wrong answer, the capital of ${question.country} is ${question.capital}! Try again.`)
                 setScore(0);
                 setUserAnswer('');
             }
