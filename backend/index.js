@@ -8,8 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let userScore = 0;
-
 async function getQuizQuestion() {
     try {
         const queryResult = await db.query("SELECT country, capital FROM capitals ORDER BY RANDOM() LIMIT 1");
@@ -47,13 +45,11 @@ app.post("/", async (req, res) => {
         const correctAnswer = queryResult.rows[0].capital;
 
         if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-            userScore++;
             const question = await getQuizQuestion();
-            res.json({ isCorrect: true, score: userScore, question });
+            res.json({ isCorrect: true, question });
         } else {
-            userScore = 0;
             const question = await getQuizQuestion();
-            res.json({ isCorrect: false, score: userScore, question });
+            res.json({ isCorrect: false, question });
         }
     } catch (err) {
         console.error("Error handling user answer:", err);
