@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PORT } from '../constants';
+import { PORT } from '../constants/constants';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import logo from '../assets/logo.png'
